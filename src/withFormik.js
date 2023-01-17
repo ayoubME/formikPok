@@ -10,42 +10,21 @@ import Box from '@mui/material/Box'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { useFormik } from 'formik'
+import { withFormik } from 'formik'
 import SignupSchema from './Form.validation'
 
 const theme = createTheme()
 
-export default function SignUp() {
-  const {
-    values,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    errors,
-    touched,
-    isSubmitting
-  } = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: ''
-    },
-    onSubmit: (values) => {
-      console.log(values)
-    },
-    validateOnBlur: false,
-    validateOnChange: false,
-    validationSchema: SignupSchema
-  })
-
-  console.log('isSubmitting', isSubmitting)
+function SignUp(props) {
+  //console.log('isSubmitting', isSubmitting)
+  const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
+    props
 
   return (
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          margin: 8,
+          margin: 6,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center'
@@ -145,3 +124,18 @@ export default function SignUp() {
     </ThemeProvider>
   )
 }
+
+export default withFormik({
+  mapPropsToValues: () => ({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  }),
+  validationSchema: SignupSchema,
+  handleSubmit: (values) => {
+    console.log(values)
+  },
+  validateOnBlur: false,
+  validateOnChange: false
+})(SignUp)
