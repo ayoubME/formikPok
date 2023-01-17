@@ -10,6 +10,7 @@ import Box from '@mui/material/Box'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import Switch from '@mui/material/Switch'
 import { useFormik, withFormik } from 'formik'
 import SignupSchema from './Form.validation'
 
@@ -29,7 +30,8 @@ export default function SignUp() {
       firstName: '',
       lastName: '',
       email: '',
-      password: ''
+      password: '',
+      usePhoneNumber: false,
     },
     onSubmit: (values) => {
       console.log(values)
@@ -58,6 +60,12 @@ export default function SignUp() {
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
+            <Grid item xs={12} sm={12}>
+              <FormControlLabel
+                control={<Switch defaultChecked />}
+                label="Sign up using phone number"
+              />
+            </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="given-name"
