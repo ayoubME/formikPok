@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.css'
 
-import { CssBaseline, Container, Typography, Box } from '@mui/material'
+import { CssBaseline } from '@mui/material'
 // import SignUp from './UseForm'
 import SignUp from './withFormik'
 
