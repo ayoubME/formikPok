@@ -130,7 +130,9 @@ export default withFormik({
     firstName: '',
     lastName: '',
     email: '',
-    password: ''
+    password: '',
+    usePhoneNumber: false,
+    phoneNumber: ''
   }),
   validationSchema: SignupSchema,
   handleSubmit: (values) => {

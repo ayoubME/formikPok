@@ -99,36 +99,39 @@ export default function SignUp() {
                 helperText={errors.lastName}
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.email && touched.email}
-                helperText={errors.email}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="phoneNumber"
-                label="Phone Number"
-                name="phoneNumber"
-                autoComplete="email"
-                value={values.phoneNumber}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.phoneNumber && touched.phoneNumber}
-                helperText={errors.phoneNumber}
-              />
-            </Grid>
+            {!values.usePhoneNumber ? (
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.email && touched.email}
+                  helperText={errors.email}
+                />
+              </Grid>
+            ) : (
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="phoneNumber"
+                  label="Phone Number"
+                  name="phoneNumber"
+                  autoComplete="email"
+                  value={values.phoneNumber}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={errors.phoneNumber && touched.phoneNumber}
+                  helperText={errors.phoneNumber}
+                />
+              </Grid>
+            )}
             <Grid item xs={12}>
               <TextField
                 required

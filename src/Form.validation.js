@@ -21,7 +21,12 @@ const SignupSchema = Yup.object().shape({
       is: true,
       then: Yup.string().required('Required')
     }),
-  email: Yup.string().email('Invalid email').required('Required'),
+  email: Yup.string()
+    .email('Invalid email')
+    .when('usePhoneNumber', {
+      is: false,
+      then: Yup.string().required('Required')
+    }),
   password: Yup.string()
     .required('Please Enter your password')
     .matches(
