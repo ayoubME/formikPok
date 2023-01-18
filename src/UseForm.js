@@ -11,7 +11,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Switch from '@mui/material/Switch'
-import { useFormik, withFormik } from 'formik'
+import { useFormik } from 'formik'
 import SignupSchema from './Form.validation'
 
 const theme = createTheme()
@@ -32,6 +32,7 @@ export default function SignUp() {
       email: '',
       password: '',
       usePhoneNumber: false,
+      phoneNumber: ''
     },
     onSubmit: (values) => {
       console.log(values)
@@ -62,7 +63,9 @@ export default function SignUp() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
               <FormControlLabel
-                control={<Switch defaultChecked />}
+                name="usePhoneNumber"
+                onChange={handleChange}
+                control={<Switch defaultChecked={values.usePhoneNumber} />}
                 label="Sign up using phone number"
               />
             </Grid>
@@ -109,6 +112,21 @@ export default function SignUp() {
                 onBlur={handleBlur}
                 error={errors.email && touched.email}
                 helperText={errors.email}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="phoneNumber"
+                label="Phone Number"
+                name="phoneNumber"
+                autoComplete="email"
+                value={values.phoneNumber}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={errors.phoneNumber && touched.phoneNumber}
+                helperText={errors.phoneNumber}
               />
             </Grid>
             <Grid item xs={12}>
